@@ -1,0 +1,60 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aviris</title>
+  <link href="~/assets/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link href="~/assets/css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <div class="topbar py-2">
+    <div class="container-fluid">
+      <div class="d-flex align-items-center gap-3">
+        <a href="index.html" class="fw-bold d-flex align-items-center gap-2" style="color:#2fbf71"><span class="fs-4">🕊️</span> <span>AviTurismo Nicaragua</span></a>
+        <form class="flex-grow-1 d-none d-md-block" onsubmit="return false;">
+          <input id="topSearch" class="form-control" placeholder="Buscar aves, reservas o guías...">
+        </form>
+        <a class="btn btn-success" href="reservar.html">Observación</a>
+        <a class="d-flex align-items-center" href="perfil.html">
+          <div class="rounded" style="background:#dff4e9;width:36px;height:36px;display:flex;align-items:center;justify-content:center">CM</div>
+          <span class="ms-2 small" id="userBadge">Invitado</span>
+        </a>
+      </div>
+    </div>
+  </div>
+    <div class="container-fluid">
+        <div class="row">
+            <aside class="col-lg-2 col-md-3 sidebar">
+                <nav class="nav flex-column gap-1">
+                    <a class="nav-link" href="/Home">🏠 Inicio</a>
+                    <a class="nav-link" href="catalogo.html">🦜 Catálogo de Aves</a>
+                    <a class="nav-link" href="/ReservaNaturals">🏞️ Reservas Naturales</a>
+                    <a class="nav-link" href="calendario.html">🗓️ Calendario de Eventos</a>X
+                    <a class="nav-link" href="reservar.html">🧭 Reservaciones </a>
+                    <a class="nav-link" href="educativo.html">📘 Educación </a>
+                    <a class="nav-link" href="mapa.html">🗺️ Mapa Interactivo</a>
+                    <a class="nav-link" href="perfil.html">👤 Mi Perfil</a>
+                    <a class="nav-link" href="login.html">🔒 Cerrar Sesión</a>
+                </nav>
+            </aside>
+            @RenderBody()
+        </div>
+    </div>
+
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+ 
+    <footer class="container-fluid"><div class="text-center small">© 2025 AviTurismo Nicaragua — Demo offline</div></footer>
+    <script src="~/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/app.js"></script>
+
+
+
+
+
+</body>
+</html>
+
