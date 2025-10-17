@@ -1,0 +1,71 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AviTurismo Nicaragua</title>
+  <link href="~/assets/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link href="~/assets/css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="topbar py-2">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center gap-3">
+                <a href="index.html" class="fw-bold d-flex align-items-center gap-2" style="color: var(--brand)"><span class="fs-4">🕊️</span> <span>AviTurismo Nicaragua</span></a>
+                <form class="flex-grow-1 d-none d-md-block" onsubmit="return false;">
+                    <input id="topSearch" class="form-control" placeholder="Buscar aves, reservas o guías...">
+                </form>
+                <a class="btn btn-success" href="reservar.html">Observación</a>
+                <a class="d-flex align-items-center" href="perfil.html">
+                    <div class="rounded" style="">CM</div>
+                    <span class="ms-2 small" id="userBadge">Invitado</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <header class="flex-navbar">
+        <div class="inner-navbar">
+            <a href="index.html" class="brand">
+                <img src="assets/img/logo.png" alt="AVIRIS Logo" class="logo">
+                <span style="color: var(--text)">AVIRIS</span>
+            </a>
+
+            <!-- inicio del navbar -->
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="hamburger">
+                <span></span>
+            </label>
+
+            <ul class="menu">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="catalogo.html">Catalogo</a></li>
+                <li><a href="reservas.html">Reservas</a></li>
+                <li><a href="calendario.html">Calendario</a></li>
+                <li><a href="reservar.html">Reservación</a></li>
+                <li><a href="educativo.html">Aprendizaje</a></li>
+                <li><a href="mapa.html">Mapa</a></li>
+                <li><a href="perfil.html">Perfil</a></li>
+                <li><a href="#">Tema Claro/Oscuro</a></li>
+
+                <button class="nav-btw">
+                    <a href="#" class="btn">&#9776</a>
+                </button>
+
+            </ul>
+
+        </div>
+        @RenderBody()
+    </header>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <footer class="container-fluid"><div class="text-center small">© 2025 AviTurismo Nicaragua — Demo offline</div></footer>
+    <script src="~/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/app.js"></script>
+
+</body>
+</html>
+

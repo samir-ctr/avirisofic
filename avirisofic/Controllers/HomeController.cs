@@ -1,6 +1,6 @@
-using System.Diagnostics;
 using avirisofic.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace avirisofic.Controllers
 {
@@ -18,7 +18,7 @@ namespace avirisofic.Controllers
             return View();
         }
 
-       
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mapa Interactivo (offline)</title>
+  <link href="assets/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/leaflet/leaflet.css" rel="stylesheet">
+  <link href="assets/css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <style>
+      body {
+          margin: 0;
+          font-family: Arial, sans-serif;
+          background-color: white; /* Fondo blanco */
+      }
+      #map {
+          height: 600px;   /* Ajuste de alto del mapa */
+          width: 100%;     /* Que ocupe todo el ancho */
+      }
+      .leaflet-popup-content {
+          font-size: 14px;
+          line-height: 1.4;
+      }
+  </style>
+  <div class="topbar py-2">
+    <div class="container-fluid">
+            <a href="index.html" class="fw-bold d-flex align-items-center gap-2" style="color:#2fbf71"><span class="fs-4"></span><div style="display:inline-block; padding:4px; margin:9px; border-radius:6px;">
+  <img src="assets\img\logo.png"
+       alt="Descripción"
+         style="display:block; width:70px; height:70px; object-fit:cover; border-radius:6px;" />
+</div> <span><h1>AVIRIS</H1></span></a>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <aside class="col-lg-2 col-md-3 sidebar">
+        <nav class="nav flex-column gap-1">
+          <a class="nav-link" href="index.html">🏠 Inicio</a>
+          <a class="nav-link" href="catalogo.html">🦜 Catálogo de Aves</a>
+          <a class="nav-link" href="reservas.html">🏞️ Reservas Naturales</a>
+          <a class="nav-link" href="calendario.html">🗓️ Calendario de Eventos</a>
+          <a class="nav-link" href="reservar.html">🧭 Reservar Visitas</a>
+          <a class="nav-link" href="educativo.html">📘 Educación y Conservación</a>
+          <a class="nav-link" href="mapa.html">🗺️ Mapa Interactivo</a>
+         
+        </nav>
+      </aside>
+      <main class="col-lg-10 col-md-9 p-3">
+                 l
+<h2>Mapa Interactivo</h2>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Mapa · Buscar · Resultados</title>
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <style>
+    :root{ --accent:#2fbf71; --muted:#6b7280; --card:#fff; }
+    html,body{ height:100%; margin:0; font-family: Arial, sans-serif; background:white; }
+    .top-controls{
+      position: absolute;
+      z-index: 1000;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 12px;
+      background: var(--card);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      border-radius: 8px;
+      padding: 10px;
+      display:flex;
+      gap:8px;
+      align-items:center;
+      min-width: 420px;
+    }
+    input[type="search"]{
+      padding:8px 10px;
+      border-radius:6px;
+      border:1px solid #ddd;
+      width: 220px;
+    }
+    select{ padding:8px; border-radius:6px; border:1px solid #ddd; }
+    button{ padding:8px 12px; border-radius:6px; border:none; cursor:pointer; font-weight:600; }
+    button.btn-search{ background: var(--accent); color:white; }
+    button.btn-clear{ background:#efefef; color:#333; }
+    #results{
+      position: absolute;
+      z-index: 999;
+      right: 12px;
+      top: 12px;
+      width: 260px;
+      max-height: 70vh;
+      overflow:auto;
+      background: white;
+      border-radius:8px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      padding:10px;
+    }
+    #results h4{ margin:0 0 8px 0; font-size:14px; color:var(--muted); }
+    .result-item{ padding:8px; border-radius:6px; border:1px solid #f0f0f0; margin-bottom:8px; cursor:pointer; }
+    #map{ height:100vh; width:100%; }
+    .no-results{ color:#b21; font-weight:600; padding:6px; }
+    @media(max-width:600px){
+      .top-controls{ left:8px; transform:none; right:8px; min-width: auto; flex-wrap:wrap; }
+      input[type="search"]{ width: 140px; }
+      #results{ display:none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA DE BÚSQUEDA -->
+  <div class="top-controls" role="search">
+    <input id="searchInput" type="search" placeholder="Buscar zona, ciudad o reserva..." />
+    <select id="filterSelect" aria-label="Filtrar por tipo">
+      <option value="Todos">Todos los tipos</option>
+      <option value="Reserva">Reserva</option>
+      <option value="Lago">Lago</option>
+      <option value="Volcán">Volcán</option>
+      <option value="Mirador">Mirador</option>
+    </select>
+    <button class="btn-search" id="btnSearch">🔎 Buscar</button>
+    <button class="btn-clear" id="btnReset">⟲ Mostrar todo</button>
+  </div>
+
+  <!-- RESULTADOS -->
+  <div id="results" aria-live="polite">
+    <h4>Resultados</h4>
+    <div id="list"></div>
+  </div>
+
+  <!-- MAPA -->
+  <div id="map"></div>
+
+  <script>
+    // Datos de ejemplo (sustituye por tus datos reales si quieres)
+    const zonas = [
+      { id:1, nombre: "Reserva El Crucero", tipo: "Reserva", coords: [12.0658, -86.2250], desc: "Bosque húmedo y ruta de aves migratorias." },
+      { id:2, nombre: "Lago Cocibolca (Granada)", tipo: "Lago", coords: [11.9330, -85.9560], desc: "Lago grande con zonas ribereñas." },
+      { id:3, nombre: "Mirador Miraflor", tipo: "Mirador", coords: [13.4800, -86.5850], desc: "Mirador cerca de senderos y humedales." },
+      { id:4, nombre: "Volcán Momotombo", tipo: "Volcán", coords: [12.4462, -86.9047], desc: "Zona volcánica con observaciones aledañas." },
+      { id:5, nombre: "Reserva La Flor", tipo: "Reserva", coords: [11.7440, -84.9630], desc: "Hábitat costero y migraciones." },
+      { id:6, nombre: "Laguna de Apoyo", tipo: "Lago", coords: [11.8670, -85.8600], desc: "Crater lake con rutas guiadas." }
+    ];
+
+    // Inicializar mapa
+    const map = L.map('map').setView([12.5, -86.0], 7);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{ maxZoom:19, attribution: '&copy; OpenStreetMap' }).addTo(map);
+
+    // Icono simple
+    const iconDefault = L.icon({
+      iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+      iconSize: [25,41],
+      iconAnchor: [12,41],
+      popupAnchor: [1,-34]
+    });
+
+    // Markers group
+    let markersGroup = L.layerGroup().addTo(map);
+    const listContainer = document.getElementById('list');
+
+    // RENDER INICIAL
+    function renderAll(){
+      markersGroup.clearLayers();
+      zonas.forEach(z => {
+        const m = L.marker(z.coords, {icon: iconDefault})
+          .bindPopup(`<b>${z.nombre}</b><br><small>${z.tipo}</small><br>${z.desc}`);
+        m.options.zoneId = z.id;
+        m.addTo(markersGroup);
+      });
+      renderList(zonas);
+    }
+
+    // RENDER LISTA
+    function renderList(items){
+      listContainer.innerHTML = "";
+      if(!items || items.length===0){
+        listContainer.innerHTML = '<div class="no-results">Sin resultados</div>';
+        return;
+      }
+      items.forEach(z => {
+        const div = document.createElement('div');
+        div.className = 'result-item';
+        div.innerHTML = `<strong>${z.nombre}</strong><div style="font-size:12px;color:#666">${z.tipo} — ${z.desc}</div>`;
+        div.onclick = () => {
+          map.setView(z.coords, 13);
+          markersGroup.eachLayer(layer => {
+            if(layer.options.zoneId === z.id) layer.openPopup();
+          });
+        };
+        listContainer.appendChild(div);
+      });
+    }
+
+    // BUSCAR + FILTRAR
+    function buscarYFiltrar(){
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      const tipo = document.getElementById('filterSelect').value;
+
+      let resultado = zonas.filter(z => {
+        const matchTipo = (tipo === 'Todos') ? true : (z.tipo === tipo);
+        const matchTexto = q === '' ? true : (
+          z.nombre.toLowerCase().includes(q) ||
+          (z.desc || '').toLowerCase().includes(q) ||
+          z.tipo.toLowerCase().includes(q)
+        );
+        return matchTipo && matchTexto;
+      });
+
+      // actualizar marcadores
+      markersGroup.clearLayers();
+      resultado.forEach(z => {
+        const m = L.marker(z.coords, {icon: iconDefault}).bindPopup(`<b>${z.nombre}</b><br><small>${z.tipo}</small><br>${z.desc}`);
+        m.options.zoneId = z.id;
+        m.addTo(markersGroup);
+      });
+
+      renderList(resultado);
+
+      if(resultado.length > 0){
+        map.setView(resultado[0].coords, 12);
+        markersGroup.eachLayer(layer => {
+          if(layer.options.zoneId === resultado[0].id) layer.openPopup();
+        });
+      }
+    }
+
+    // RESET
+    function resetView(){
+      document.getElementById('searchInput').value = '';
+      document.getElementById('filterSelect').value = 'Todos';
+      renderAll();
+      map.setView([12.5, -86.0], 7);
+    }
+
+    // EVENTOS
+    document.getElementById('btnSearch').addEventListener('click', buscarYFiltrar);
+    document.getElementById('btnReset').addEventListener('click', resetView);
+    document.getElementById('searchInput').addEventListener('keydown', function(e){
+      if(e.key === 'Enter') { e.preventDefault(); buscarYFiltrar(); }
+    });
+
+    // Lanzar el render inicial
+    renderAll();
+  </script>
+    <footer class="container-fluid"><div class="text-center small">© 2025 AVIRIS</div></footer>
+
+</body>
+</html>

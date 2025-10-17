@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi Perfil</title>
+  <link href="assets/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/styles.css" rel="stylesheet">
+</head>
+<body>
+ <div class="container-fluid">
+       <a href="index.html" class="fw-bold d-flex align-items-center gap-2" style=""><span class="fs-4"></span><div style="">
+  <img src="assets\img\ui9.png"
+       alt="Descripción"
+         style="" />
+</div> <span><h1>AVIRIS</H1></span></a>
+      </div>
+    </div>a
+ <!-- <div class="container-fluid">
+    <div class="row">
+      <aside class="col-lg-2 col-md-3 sidebar">
+        <nav class="nav flex-column gap-1"
+     -->    
+    <!-- <a class="nav-link" href="index.html">🏠 Inicio</a>
+          <a class="nav-link" href="catalogo.html">🦜 Catálogo de Aves</a>
+          <a class="nav-link" href="reservas.html">🏞️ Reservas Naturales</a>
+          <a class="nav-link" href="calendario.html">🗓️ Calendario de Eventos</a>
+          <a class="nav-link" href="reservar.html">🧭 Reservar Visitas</a>
+          <a class="nav-link" href="educativo.html">📘 Educación y Conservación</a>
+          <a class="nav-link" href="mapa.html">🗺️ Mapa Interactivo</a>
+          <a class="nav-link" href="perfil.html">👤 Mi Perfil</a>
+           -->
+      </nav>
+      </aside>
+      <main class="col-lg-10 col-md-9 p-3">
+
+<h2>Mi Perfil</h2>
+<div class="row g-3">
+  <div class="col-lg-4"><div class="card p-3">
+    <div class="d-flex align-items-center gap-2">
+      <div class="rounded" style="">CM</div>
+      <div><div id="pNombre" class="fw-semibold">Usuario</div><div class="small text-muted">Managua, Nicaragua</div></div>
+    </div><hr>
+    <div class="small"><div>Email: <span id="pEmail">usuario@example.com</span></div><div>Miembro desde: Marzo 2021</div></div>
+    <button class="btn btn-outline-success mt-2" onclick="logout()">Cerrar Sesión</button>
+  </div></div>
+  <div class="col-lg-8"><div class="card p-3"><h5>Especies Observadas Recientemente</h5><div id="recientes" class="row g-2"></div></div></div>
+</div>
+
+<script>(function(){ const u=getUser()||{nombre:'Usuario',email:'usuario@example.com'}; document.getElementById('pNombre').textContent=u.nombre; document.getElementById('pEmail').textContent=u.email; const cont=document.getElementById('recientes'); DATA.aves.slice(0,3).forEach(a=>{ const col=document.createElement('div'); col.className='col-md-4'; col.innerHTML=`<div class="card"><img src="${a.imagen}" class="card-img-top"><div class="card-body"><div class="fw-semibold">${a.nombre}</div><div class="small text-muted">${a.cientifico}</div></div></div>`; cont.appendChild(col); }); })();</script>
+
+      </main>
+    </div>
+  </div>
+  <footer class="container-fluid"><div class="text-center small">© 2025 AVIRIS</div></footer>
+  <script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/app.js"></script>
+  
+</body></html>

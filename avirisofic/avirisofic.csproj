@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -7,12 +7,84 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\assets\calendario.html.__projection.g.css" />
+    <Content Remove="wwwroot\assets\calendario.html.__projection.g.js" />
+    <Content Remove="wwwroot\assets\catalogo.html.__projection.g.css" />
+    <Content Remove="wwwroot\assets\catalogo.html.__projection.g.js" />
+    <Content Remove="wwwroot\assets\css\styles.css" />
+    <Content Remove="wwwroot\assets\educativo.html.__projection.g.css" />
+    <Content Remove="wwwroot\assets\educativo.html.__projection.g.js" />
+    <Content Remove="wwwroot\assets\guiaturistico.html.__projection.g.css" />
+    <Content Remove="wwwroot\assets\index.html.__projection.g.css" />
+    <Content Remove="wwwroot\assets\index.html.__projection.g.js" />
+    <Content Remove="wwwroot\assets\login.html.__projection.g.css" />
+    <Content Remove="wwwroot\assets\login.html.__projection.g.js" />
+    <Content Remove="wwwroot\assets\mapa.html.__projection.g.css" />
+    <Content Remove="wwwroot\assets\mapa.html.__projection.g.js" />
+    <Content Remove="wwwroot\assets\perfil.html.__projection.g.css" />
+    <Content Remove="wwwroot\assets\perfil.html.__projection.g.js" />
+    <Content Remove="wwwroot\assets\reservar.html.__projection.g.css" />
+    <Content Remove="wwwroot\assets\reservar.html.__projection.g.js" />
+    <Content Remove="wwwroot\assets\reservas.html.__projection.g.css" />
+    <Content Remove="wwwroot\assets\reservas.html.__projection.g.js" />
+    <Content Remove="wwwroot\calendario.html.__projection.g.css" />
+    <Content Remove="wwwroot\calendario.html.__projection.g.js" />
+    <Content Remove="wwwroot\catalogo.html.__projection.g.css" />
+    <Content Remove="wwwroot\catalogo.html.__projection.g.js" />
+    <Content Remove="wwwroot\reservar.html.__projection.g.css" />
+    <Content Remove="wwwroot\reservar.html.__projection.g.js" />
+    <Content Remove="wwwroot\reservas.html.__projection.g.css" />
+    <Content Remove="wwwroot\reservas.html.__projection.g.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="assets\reservas.html.__projection.g.css" />
+    <None Remove="assets\reservas.html.__projection.g.js" />
+    <None Remove="catalogo.html.__projection.g.css" />
+    <None Remove="catalogo.html.__projection.g.js" />
+    <None Remove="educativo.html.__projection.g.css" />
+    <None Remove="educativo.html.__projection.g.js" />
+    <None Remove="guiaturistico.html.__projection.g.css" />
+    <None Remove="guiaturistico.html.__projection.g.js" />
+    <None Remove="index.html.__projection.g.css" />
+    <None Remove="index.html.__projection.g.js" />
+    <None Remove="login.html.__projection.g.css" />
+    <None Remove="login.html.__projection.g.js" />
+    <None Remove="mapa.html.__projection.g.css" />
+    <None Remove="mapa.html.__projection.g.js" />
+    <None Remove="perfil.html.__projection.g.css" />
+    <None Remove="perfil.html.__projection.g.js" />
+    <None Remove="reservar.html.__projection.g.css" />
+    <None Remove="reservar.html.__projection.g.js" />
+    <None Remove="reservas.html.__projection.g.css" />
+    <None Remove="reservas.html.__projection.g.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\calendario.html" />
+    <None Include="wwwroot\assets\catalogo.html" />
+    <None Include="wwwroot\assets\css\styles.css" />
+    <None Include="wwwroot\assets\educativo.html" />
+    <None Include="wwwroot\assets\guiaturistico.html" />
+    <None Include="wwwroot\assets\index.html" />
+    <None Include="wwwroot\assets\login.html" />
+    <None Include="wwwroot\assets\mapa.html" />
+    <None Include="wwwroot\assets\perfil.html" />
+    <None Include="wwwroot\assets\reservar.html" />
+    <None Include="wwwroot\assets\reservas.html" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.9">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="assets\css\" />
   </ItemGroup>
 
 </Project>

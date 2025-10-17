@@ -1,0 +1,110 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<main class="col-lg-10 col-md-9 p-3">
+    <!-- HERO -->
+    <section class="mb-3">
+        <div class="p-5 brand-gradient text-white rounded-4">
+            <div class="row g-3 align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-5 fw-bold">AviTurismo Nicaragua</h1>
+                    <p class="lead">Explora aves, planifica rutas y reserva experiencias sostenibles con guías locales.</p>
+                    <div class="d-flex gap-2 flex-wrap">
+                        <a class="btn btn-light" href="catalogo.html">Explorar Aves</a>
+                        <a class="btn btn-outline-success" href="reservas.html">Reservas</a>
+                        <a class="btn btn-outline-primary" href="reservar.html">Reservar Visita</a>
+                    </div>
+                </div>
+                <div class="col-lg-4"><img src="assets/img/ui2.jpg" class="img-fluid card-img-top rounded-4" alt=""></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KPIs -->
+    <section class="row g-3">
+        <div class="col-lg-3"><div class="kpi"><div class="num" id="kAves">0</div><div>Especies</div></div></div>
+        <div class="col-lg-3"><div class="kpi"><div class="num" id="kReservas">0</div><div>Reservas</div></div></div>
+        <div class="col-lg-3"><div class="kpi"><div class="num" id="kGuias">0</div><div>Guías</div></div></div>
+        <div class="col-lg-3"><div class="kpi"><div class="num" id="kEventos">0</div><div>Eventos</div></div></div>
+    </section>
+
+    <!-- Hotspots + bundles -->
+    <section class="row g-3 mt-3">
+        <div class="col-lg-8">
+            <div class="card p-3 mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5>Hotspots destacados</h5>
+                    <a class="btn btn-light" href="mapa.html">Ver mapa</a>
+                </div>
+                <div id="hotspots" class="row g-3"></div>
+            </div>
+
+            <div class="card p-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5>Paquetes por nivel</h5>
+                    <a class="btn btn-light" href="reservar.html">Reservar</a>
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-4"><div class="card p-3"><div class="fw-semibold">Iniciación</div><div class="small text-muted">Medio día, 1 guía</div><div class="mt-1">Desde <strong>$29</strong></div></div></div>
+                    <div class="col-md-4"><div class="card p-3"><div class="fw-semibold">Intermedio</div><div class="small text-muted">1 día completo + fotografía</div><div class="mt-1">Desde <strong>$59</strong></div></div></div>
+                    <div class="col-md-4"><div class="card p-3"><div class="fw-semibold">Experto</div><div class="small text-muted">2–3 días, rutas migratorias</div><div class="mt-1">Desde <strong>$129</strong></div></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card p-3 mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5>Temporada y eventos</h5>
+                    <a class="btn btn-light" href="calendario.html">Ver</a>
+                </div>
+                <ul id="homeEventos" class="list-group list-group-flush"></ul>
+            </div>
+
+            <div class="card p-3">
+                <h5>Testimonios</h5>
+                <div class="testi">
+                    <div class="card p-3"><div class="fw-semibold">María</div><div class="small text-muted">“La ruta del Quetzal fue inolvidable. Guías atentos y responsables.”</div></div>
+                    <div class="card p-3"><div class="fw-semibold">Luis</div><div class="small text-muted">“Me encantó el enfoque en ética y conservación.”</div></div>
+                    <div class="card p-3"><div class="fw-semibold">Sofía</div><div class="small text-muted">“Vi 35 especies en un día en Apoyo.”</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        (function(){
+          const d = window.DATA;
+          // KPIs
+          document.getElementById('kAves').textContent = d.aves.length;
+          document.getElementById('kReservas').textContent = d.reservas.length;
+          document.getElementById('kGuias').textContent = d.guias.length;
+          document.getElementById('kEventos').textContent = d.eventos.length;
+          // Hotspots
+          const wrap = document.getElementById('hotspots');
+          (d.hotspots||[]).forEach(h=>{
+            const col=document.createElement('div'); col.className='col-md-6';
+            col.innerHTML = `<div class="card h-100 p-2">
+              <img src="assets/img/ui3.jpg" class="card-img-top" style="height:160px;object-fit:cover">
+              <div class="card-body">
+                <div class="fw-semibold">${h.nombre}</div>
+                <div class="small text-muted">${h.desc}</div>
+                <div class="chips mt-2">
+                  <span class="chip">Mejor: ${h.mejor}</span>
+                  <span class="chip">${(h.especies||[]).join(' · ')}</span>
+                </div>
+              </div>
+            </div>`;
+            wrap.appendChild(col);
+          });
+          // Eventos
+          const ev = document.getElementById('homeEventos');
+          d.eventos.slice(0,3).forEach(e=>{
+            const li=document.createElement('li'); li.className='list-group-item d-flex justify-content-between';
+            li.innerHTML = `<span>${e.titulo}</span><span class="badge-soft-green">${new Date(e.fecha).toLocaleDateString('es-NI')}</span>`;
+            ev.appendChild(li);
+          });
+        })();
+    </script>
+</main>
