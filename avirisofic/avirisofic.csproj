@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\HomeController.cs" />
+    <Compile Remove="Program_Reg.cs" />
+    <Compile Remove="Reg.cs" />
+    <Compile Remove="Views\HomeController.cs" />
+    <Compile Remove="Views\Reg.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\assets\calendario.html.__projection.g.css" />
     <Content Remove="wwwroot\assets\calendario.html.__projection.g.js" />
     <Content Remove="wwwroot\assets\catalogo.html.__projection.g.css" />
@@ -15,6 +23,15 @@
     <Content Remove="wwwroot\assets\educativo.html.__projection.g.css" />
     <Content Remove="wwwroot\assets\educativo.html.__projection.g.js" />
     <Content Remove="wwwroot\assets\guiaturistico.html.__projection.g.css" />
+    <Content Remove="wwwroot\assets\img\OIP.webp" />
+    <Content Remove="wwwroot\assets\img\ui1.jpg" />
+    <Content Remove="wwwroot\assets\img\ui2.jpg" />
+    <Content Remove="wwwroot\assets\img\ui3.jpg" />
+    <Content Remove="wwwroot\assets\img\ui4.jpg" />
+    <Content Remove="wwwroot\assets\img\ui5.jpg" />
+    <Content Remove="wwwroot\assets\img\ui6.jpg" />
+    <Content Remove="wwwroot\assets\img\ui7.jpg" />
+    <Content Remove="wwwroot\assets\img\ui8.jpg" />
     <Content Remove="wwwroot\assets\index.html.__projection.g.css" />
     <Content Remove="wwwroot\assets\index.html.__projection.g.js" />
     <Content Remove="wwwroot\assets\login.html.__projection.g.css" />
@@ -46,6 +63,8 @@
     <None Remove="educativo.html.__projection.g.js" />
     <None Remove="guiaturistico.html.__projection.g.css" />
     <None Remove="guiaturistico.html.__projection.g.js" />
+    <None Remove="Home\login.html.__projection.g.css" />
+    <None Remove="Home\login.html.__projection.g.js" />
     <None Remove="index.html.__projection.g.css" />
     <None Remove="index.html.__projection.g.js" />
     <None Remove="login.html.__projection.g.css" />
@@ -61,17 +80,28 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\assets\calendario.html" />
-    <None Include="wwwroot\assets\catalogo.html" />
     <None Include="wwwroot\assets\css\styles.css" />
-    <None Include="wwwroot\assets\educativo.html" />
-    <None Include="wwwroot\assets\guiaturistico.html" />
-    <None Include="wwwroot\assets\index.html" />
-    <None Include="wwwroot\assets\login.html" />
-    <None Include="wwwroot\assets\mapa.html" />
-    <None Include="wwwroot\assets\perfil.html" />
-    <None Include="wwwroot\assets\reservar.html" />
-    <None Include="wwwroot\assets\reservas.html" />
+    <None Include="wwwroot\assets\img\logo.png" />
+    <None Include="wwwroot\assets\img\OIP.webp" />
+    <None Include="wwwroot\assets\img\ui1.jpg" />
+    <None Include="wwwroot\assets\img\ui10.jpg" />
+    <None Include="wwwroot\assets\img\ui2.jpg" />
+    <None Include="wwwroot\assets\img\ui3.jpg" />
+    <None Include="wwwroot\assets\img\ui4.jpg" />
+    <None Include="wwwroot\assets\img\ui5.jpg" />
+    <None Include="wwwroot\assets\img\ui6.jpg" />
+    <None Include="wwwroot\assets\img\ui7.jpg" />
+    <None Include="wwwroot\assets\img\ui8.jpg" />
+    <None Include="wwwroot\calendario.html" />
+    <None Include="wwwroot\catalogo.html" />
+    <None Include="wwwroot\educativo.html" />
+    <None Include="wwwroot\guiaturistico.html" />
+    <None Include="wwwroot\index.html" />
+    <None Include="wwwroot\login.html" />
+    <None Include="wwwroot\mapa.html" />
+    <None Include="wwwroot\perfil.html" />
+    <None Include="wwwroot\reservar.html" />
+    <None Include="wwwroot\reservas.html" />
   </ItemGroup>
 
   <ItemGroup>
@@ -85,6 +115,7 @@
 
   <ItemGroup>
     <Folder Include="assets\css\" />
+    <Folder Include="assets\img\" />
   </ItemGroup>
 
 </Project>

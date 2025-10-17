@@ -10,7 +10,7 @@
   <div class="topbar py-2">
     <div class="container-fluid">
       <div class="d-flex align-items-center gap-3">
-        <a href="index.html" class="fw-bold d-flex align-items-center gap-2" style="color:#2fbf71"><span class="fs-4">🕊️</span> <span>AviTurismo Nicaragua</span></a>
+        <a href="~/index.html" class="fw-bold d-flex align-items-center gap-2" style="color:#2fbf71"><span class="fs-4">🕊️</span> <span>AviTurismo Nicaragua</span></a>
         <form class="flex-grow-1 d-none d-md-block" onsubmit="return false;">
           <input id="topSearch" class="form-control" placeholder="Buscar aves, reservas o guías...">
         </form>
@@ -24,19 +24,38 @@
   </div>
     <div class="container-fluid">
         <div class="row">
-            <aside class="col-lg-2 col-md-3 sidebar">
-                <nav class="nav flex-column gap-1">
-                    <a class="nav-link" href="/Home">🏠 Inicio</a>
-                    <a class="nav-link" href="catalogo.html">🦜 Catálogo de Aves</a>
-                    <a class="nav-link" href="/ReservaNaturals">🏞️ Reservas Naturales</a>
-                    <a class="nav-link" href="calendario.html">🗓️ Calendario de Eventos</a>
-                    <a class="nav-link" href="reservar.html">🧭 Reservar Visitas</a>
-                    <a class="nav-link" href="educativo.html">📘 Educación y Conservación</a>
-                    <a class="nav-link" href="mapa.html">🗺️ Mapa Interactivo</a>
-                    <a class="nav-link" href="perfil.html">👤 Mi Perfil</a>
-                    <a class="nav-link" href="login.html">🔒 Cerrar Sesión</a>
-                </nav>
-            </aside>
+            <header class="flex-navbar">
+                <div class="inner-navbar">
+                    <a href="index.html" class="brand">
+                        <img src="~/assets/img/" alt="AVIRIS Logo" class="logo">
+                        <span style="color: var(--text)">AVIRIS</span>
+                    </a>
+
+                    <!-- inicio del navbar -->
+                    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+                    <label for="menu-toggle" class="hamburger">
+                        <span></span>
+                    </label>
+
+                    <ul class="menu">
+                        <li><a href="Home">Inicio</a></li>
+                        <li><a href="catalogo.html">Catalogo</a></li>
+                        <li><a href="Reservas">Reservas</a></li>
+                        <li><a href="calendario.html">Calendario</a></li>
+                        <li><a href="reservar.html">Reservación</a></li>
+                        <li><a href="educativo.html">Aprendizaje</a></li>
+                        <li><a href="mapa.html">Mapa</a></li>
+                        <li><a href="perfil.html">Perfil</a></li>
+                        <li><a href="#">Tema Claro/Oscuro</a></li>
+
+                        <button class="nav-btw">
+                            <a href="#" class="btn">&#9776</a>
+                        </button>
+
+                    </ul>
+
+                </div>
+            </header>
             @RenderBody()
         </div>
     </div>
