@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reservar Experiencia</title>
+  
+  <link href="assets/css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <div class="topbar py-2">
+    <div class="container-fluid">
+      <div class="topbar py-2">
+    <div class="container-fluid">
+        <a href="index.html" class="fw-bold d-flex align-items-center gap-2" style="color:#2fbf71"><span class="fs-4"></span><div style="">
+  <img src="assets\img\ui9.png"
+       alt="Descripción"
+         style="" />
+</div> <span><h1>AVIRIS</H1></span></a>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <aside class="col-lg-2 col-md-3 sidebar">
+        <nav class="nav flex-column gap-1">
+          <a class="nav-link" href="index.html">🏠 Inicio</a>
+          <a class="nav-link" href="catalogo.html">🦜 Catálogo de Aves</a>
+          <a class="nav-link" href="reservas.html">🏞️ Reservas Naturales</a>
+          <a class="nav-link" href="calendario.html">🗓️ Calendario de Eventos</a>
+          <a class="nav-link" href="reservar.html">🧭 Reservar Visitas</a>
+          <a class="nav-link" href="educativo.html">📘 Educación y Conservación</a>
+          <a class="nav-link" href="mapa.html">🗺️ Mapa Interactivo</a>
+          <a class="nav-link" href="perfil.html">👤 Mi Perfil</a>
+          <a class="nav-link" href="login.html">🔒 Cerrar Sesión</a>
+        </nav>
+      </aside>
+       <main class="col-lg-10 col-md-9 p-3">
+        <div class="row">
+  <div class="col-lg-8">
+    <h5 class="mt-3">1. Selecciona una Reserva Natural</h5>
+    <div id="selReservas" class="row g-3"><div class="col-md-6">
+      <div class="card card-reserve h-100">
+        <img src="assets/img/ui5.jpg" class="card-img-top" alt="Reserva de Biosfera Bosawás">
+        <div class="card-body">
+          <h6 class="mb-1">Reserva de Biosfera Bosawás</h6>
+          <div class="small text-muted">Jinotega</div>
+          <div class="mt-1">C$45.00 NIO / persona / día</div>
+          <button class="btn btn-outline-success btn-sm mt-2" data-id="1">Seleccionar</button>
+        </div>
+      </div></div><div class="col-md-6">
+      <div class="card card-reserve h-100">
+        <img src="assets/img/ui6.jpg" class="card-img-top" alt="Reserva Natural Laguna de Apoyo">
+        <div class="card-body">
+          <h6 class="mb-1">Reserva Natural Laguna de Apoyo</h6>
+          <div class="small text-muted">Masaya</div>
+          <div class="mt-1">C$35.00 NIO / persona / día</div>
+          <button class="btn btn-outline-success btn-sm mt-2" data-id="2">Seleccionar</button>
+        </div>
+      </div></div><div class="col-md-6">
+      <div class="card card-reserve h-100">
+        <img src="assets/img/ui7.jpg" class="card-img-top" alt="Reserva Silvestre El Jaguar">
+        <div class="card-body">
+          <h6 class="mb-1">Reserva Silvestre El Jaguar</h6>
+          <div class="small text-muted">Jinotega</div>
+          <div class="mt-1">C$40.00 NIO / persona / día</div>
+          <button class="btn btn-outline-success btn-sm mt-2" data-id="3">Seleccionar</button>
+        </div>
+      </div></div><div class="col-md-6">
+      <div class="card card-reserve h-100">
+        <img src="assets/img/ui8.jpg" class="card-img-top" alt="Reserva Natural Volcán Mombacho">
+        <div class="card-body">
+          <h6 class="mb-1">Reserva Natural Volcán Mombacho</h6>
+          <div class="small text-muted">Granada</div>
+          <div class="mt-1">C$38.00 NIO / persona / día</div>
+          <button class="btn btn-outline-success btn-sm mt-2" data-id="4">Seleccionar</button>
+        </div>
+      </div></div><div class="col-md-6">
+      <div class="card card-reserve h-100">
+        <img src="assets/img/ui4.jpg" class="card-img-top" alt="Refugio de Vida Silvestre Los Guatuzos">
+        <div class="card-body">
+          <h6 class="mb-1">Refugio de Vida Silvestre Los Guatuzos</h6>
+          <div class="small text-muted">Río San Juan</div>
+          <div class="mt-1">C$42.00 NIO / persona / día</div>
+          <button class="btn btn-outline-success btn-sm mt-2" data-id="5">Seleccionar</button>
+        </div>
+      </div></div></div>
+
+    <h5 class="mt-4">2. Selecciona Fechas y Número de Personas</h5>
+    <div class="row g-3">
+      <div class="col-md-3"><label class="form-label">Fecha de inicio</label><input type="date" id="fInicio" class="form-control"></div>
+      <div class="col-md-3"><label class="form-label">Fecha de fin</label><input type="date" id="fFin" class="form-control"></div>
+      <div class="col-md-3"><label class="form-label">Núm. de adultos</label><select id="fAdultos" class="form-select"><option>1</option><option>2</option><option>3</option><option>4</option></select></div>
+      <div class="col-md-3"><label class="form-label">Núm. de niños</label><select id="fNinos" class="form-select"><option>0</option><option>1</option><option>2</option><option>3</option></select></div>
+    </div>
+
+    <h5 class="mt-4">3. Selecciona un Guía Especializado</h5>
+    <div id="selGuias" class="vstack gap-2"><div class="card p-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <div class="fw-semibold">Elena Martínez</div>
+            <div class="small text-muted">8 años de experiencia</div>
+          </div>
+          <div class="text-end">
+            <div>C$25.00 NIO / hora</div>
+            <button class="btn btn-outline-primary btn-sm mt-2" data-id="1">Seleccionar</button>
+          </div>
+        </div></div><div class="card p-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <div class="fw-semibold">Roberto Guzmán</div>
+            <div class="small text-muted">12 años de experiencia</div>
+          </div>
+          <div class="text-end">
+            <div>C$30.00 NIO / hora</div>
+            <button class="btn btn-outline-primary btn-sm mt-2" data-id="2">Seleccionar</button>
+          </div>
+        </div></div><div class="card p-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <div class="fw-semibold">Ana Lucía Vega</div>
+            <div class="small text-muted">5 años de experiencia</div>
+          </div>
+          <div class="text-end">
+            <div>C$22.00 NIO / hora</div>
+            <button class="btn btn-outline-primary btn-sm mt-2" data-id="3">Seleccionar</button>
+          </div>
+        </div></div></div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="card p-3 position-sticky" style=""><h5>Resumen de Reserva</h5><div id="resumen" class="small">
+      <div class="d-flex gap-2 align-items-start">
+        <img src="assets/img/ui5.jpg" width="64" class="rounded" alt="">
+        <div>
+          <div class="fw-semibold">Reserva de Biosfera Bosawás</div>
+          <div class="small text-muted">Jinotega</div>
+        </div>
+      </div>
+      <ul class="list-unstyled mt-2">
+        <li>Noches: <strong>1</strong></li>
+        <li>Personas: <strong>1 adultos</strong> y <strong>0 niños</strong></li>
+        <li>Guía: <strong>Elena Martínez</strong> (4 horas)</li>
+      </ul>
+      <div class="border-top pt-2">
+        <div class="d-flex justify-content-between"><span>Tarifa reserva</span><strong>C$45.00 NIO</strong></div>
+        <div class="d-flex justify-content-between"><span>Guía</span><strong>C$100.00 NIO</strong></div>
+        <div class="d-flex justify-content-between fs-5 mt-2"><span>Total</span><strong>C$145.00 NIO</strong></div>
+      </div></div><hr><div class="d-grid"><button id="btnPagar" class="btn btn-brand">Confirmar y Pagar</button></div></div>
+  </div>
+</div>
+      
+  <footer class="container-fluid"><div class="text-center small">© 2025 AVIRIS</div></footer>
+  <script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/app.js"></script>
+
+</body></html>

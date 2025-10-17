@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calendario de Avistamiento</title>
+</head>
+
+  <div class="topbar py-2">
+    <div class="container-fluid">
+      <a href="index.html" class="fw-bold d-flex align-items-center gap-2" style="color:#2fbf71"><span class="fs-4"></span><div style="display:inline-block; padding:4px; margin:9px; border-radius:6px;">
+  <img src="assets\img\ui9.png"
+       alt="Descripción"
+         style="display:block; width:70px; height:70px; object-fit:cover; border-radius:6px;" />
+</div><style>
+  .btn-inicio {
+    background-color:beige;
+    color: black;
+    border: none;
+    padding: 8px 9px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 9px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background 0.3s;
+  }
+  .btn-inicio:hover {
+    background-color: #0041c4;
+  }
+</style>
+  <style>
+    :root{
+      --bg:#fbfdff; --card:#fff; --accent:#2fbf71; --muted:#6b7280; --border:#e6e6e6;
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font-family:Inter, system-ui, Arial, sans-serif; background:var(--bg); color:#111; padding:18px;}
+    .wrap{max-width:1100px;margin:0 auto;}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+    header h1{font-size:20px;margin:0;display:flex;gap:8px;align-items:center;}
+    .controls{display:flex;gap:8px;align-items:center;}
+    button{border:1px solid var(--border);background:#fff;padding:8px 10px;border-radius:8px;cursor:pointer;font-weight:600;}
+    button.primary{background:var(--accent);color:#fff;border-color:transparent;}
+    .month-label{font-weight:600;min-width:220px;text-align:center;}
+    .calendar{background:var(--card);border-radius:12px;padding:12px;box-shadow:0 6px 18px rgba(0,0,0,0.06);border:1px solid var(--border);}
+    .weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:8px;}
+    .weekday{text-align:center;font-size:13px;color:var(--muted);padding:6px 4px;}
+    .days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;}
+    .day{min-height:120px;background:#fafafa;border-radius:8px;border:1px solid #f0f0f0;padding:8px;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden;}
+    .day.dim{opacity:.45;background:#fff;}
+    .day-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+    .date-num{font-weight:700;font-size:14px;color:#111;}
+    .add-btn{margin-left:auto;font-size:12px;padding:4px 8px;border-radius:6px;}
+    .entries{flex:1 1 auto;overflow:auto;padding:4px;display:flex;flex-direction:column;gap:6px;}
+    .entry{background:#fff;border:1px solid var(--border);padding:6px;border-radius:6px;font-size:13px;box-shadow:0 1px 4px rgba(0,0,0,0.03);}
+    .entry .title{font-weight:700;margin-bottom:4px;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    .entry small{color:var(--muted);display:block;margin-top:4px;font-size:12px;}
+    /* Modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;z-index:9999;}
+    .modal{background:white;width:min(720px,95%);border-radius:12px;padding:16px;box-shadow:0 10px 35px rgba(0,0,0,0.2);}
+    .modal header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+    .modal input[type="text"], .modal textarea{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:14px;}
+    .modal textarea{min-height:120px;resize:vertical;margin-top:8px;}
+    .smallmuted{color:var(--muted);font-size:13px}
+    .entry-actions{display:flex;gap:6px;margin-top:6px;justify-content:flex-end;}
+    @media(max-width:720px){ .day{min-height:100px;padding:6px;} .month-label{font-size:14px;} }
+  </style>
+</head>
+<body>
+  <header class="flex-navbar">
+    <div class="inner-navbar">
+      <a href="index.html" class="brand">
+        <img src="assets/img/logo.png" alt="AVIRIS Logo" class="logo">
+        <span style="color: var(--text)">AVIRIS</span>
+      </a>
+
+      <!-- inicio del navbar -->
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      <label for="menu-toggle" class="hamburger">
+        <span></span>
+      </label>
+
+      <ul class="menu">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Catalogo</a></li>
+        <li><a href="#">Reservas</a></li>
+        <li><a href="#">Calendario</a></li>
+        <li><a href="#">Reservación</a></li>
+        <li><a href="#">Aprendizaje</a></li>
+        <li><a href="#">Mapa</a></li>
+        <li><a href="#">Perfil</a></li>
+        <li><a href="#">Tema Claro/Oscuro</a></li>
+
+        <button class="nav-btw">
+          <a href="#" class="btn">&#9776</a>
+        </button>
+
+      </ul>
+
+    </div>
+  </header>
+  <div class="wrap">
+    <header>
+      <h1>🗓️ Calendario</h1>
+      <div class="controls">
+        <button id="prevBtn">◀</button>
+        <div class="month-label" id="monthLabel"></div>
+        <button id="nextBtn">▶</button>
+        <button class="primary" id="todayBtn">Hoy</button>
+      </div>
+    </header>
+
+    <main class="calendar" aria-live="polite">
+      <div class="weekdays">
+        <div class="weekday">Lun</div><div class="weekday">Mar</div><div class="weekday">Mié</div>
+        <div class="weekday">Jue</div><div class="weekday">Vie</div><div class="weekday">Sáb</div><div class="weekday">Dom</div>
+      </div>
+
+      <div class="days" id="daysGrid" role="grid" aria-label="Calendario"></div>
+      <p class="smallmuted" style="margin-top:10px">Doble clic en un día o pulsa "+" para añadir una entrada</p>
+    </main>
+  </div>
+
+  <!-- modal root -->
+  <div id="modalRoot" aria-hidden="true"></div>
+
+<script>
+(function(){
+  const locale = 'es-ES';
+  const storageKey = 'calendar_entries_v1';
+  // datos: { 'YYYY-MM-DD': [ {title:'', text:'', created:timestamp}, ... ] }
+  let data = JSON.parse(localStorage.getItem(storageKey) || '{}');
+
+  let today = new Date();
+  let year = today.getFullYear();
+  let month = today.getMonth();
+
+  const monthLabel = document.getElementById('monthLabel');
+  const daysGrid = document.getElementById('daysGrid');
+  const modalRoot = document.getElementById('modalRoot');
+
+  document.getElementById('prevBtn').addEventListener('click', ()=> { month--; if(month<0){month=11; year--;} renderCalendar(); });
+  document.getElementById('nextBtn').addEventListener('click', ()=> { month++; if(month>11){month=0; year++;} renderCalendar(); });
+  document.getElementById('todayBtn').addEventListener('click', ()=> { const t=new Date(); year=t.getFullYear(); month=t.getMonth(); renderCalendar(); });
+
+  function save(){ localStorage.setItem(storageKey, JSON.stringify(data)); }
+
+  function formatKey(d){
+    const y=d.getFullYear(); const m=String(d.getMonth()+1).padStart(2,'0'); const dd=String(d.getDate()).padStart(2,'0');
+    return `${y}-${m}-${dd}`;
+  }
+
+  function renderCalendar(){
+    daysGrid.innerHTML = '';
+    const firstOfMonth = new Date(year, month, 1);
+    const lastOfMonth = new Date(year, month+1, 0);
+    const firstWeekday = (firstOfMonth.getDay()+6)%7; // 0 = lun
+    const daysInMonth = lastOfMonth.getDate();
+    const prevMonthLast = new Date(year, month, 0).getDate();
+    const totalCells = Math.ceil((firstWeekday + daysInMonth) / 7) * 7;
+
+    monthLabel.textContent = new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric' }).format(new Date(year, month, 1)).toUpperCase();
+
+    for(let i=0;i<totalCells;i++){
+      const cell = document.createElement('div'); cell.className='day';
+      const dayIndex = i - firstWeekday + 1;
+      let cellDate, isOther=false;
+      if(i < firstWeekday){ const d = prevMonthLast - (firstWeekday - 1) + i; cellDate = new Date(year, month-1, d); isOther=true; }
+      else if(dayIndex > daysInMonth){ const d = dayIndex - daysInMonth; cellDate = new Date(year, month+1, d); isOther=true; }
+      else { cellDate = new Date(year, month, dayIndex); }
+
+      const key = formatKey(cellDate);
+      if(isOther) cell.classList.add('dim');
+
+      // header
+      const header = document.createElement('div'); header.className='day-header';
+      const num = document.createElement('div'); num.className='date-num'; num.textContent = cellDate.getDate();
+      const addBtn = document.createElement('button'); addBtn.className='add-btn'; addBtn.type='button'; addBtn.textContent='+';
+      addBtn.title = 'Añadir entrada'; addBtn.addEventListener('click', (e)=>{ e.stopPropagation(); openModal(key); });
+
+      header.appendChild(num); header.appendChild(addBtn);
+
+      // entries container
+      const entriesDiv = document.createElement('div'); entriesDiv.className='entries';
+      const entries = data[key] || [];
+      // mostrar hasta 3 entradas (resumidas)
+      entries.slice(0,3).forEach((en, idx)=>{
+        const el = document.createElement('div'); el.className='entry';
+        const t = document.createElement('div'); t.className='title'; t.textContent = en.title || '(Sin título)';
+        const s = document.createElement('small'); s.textContent = (en.text || '').length>80 ? (en.text.slice(0,80)+'…') : en.text || '';
+        el.appendChild(t); if(s.textContent) el.appendChild(s);
+        // acciones rápidas (editar/eliminar)
+        const awrap = document.createElement('div'); awrap.className='entry-actions';
+        const editBtn = document.createElement('button'); editBtn.type='button'; editBtn.textContent='Editar'; editBtn.addEventListener('click',(ev)=>{ ev.stopPropagation(); openModal(key, idx); });
+        const delBtn = document.createElement('button'); delBtn.type='button'; delBtn.textContent='Eliminar'; delBtn.addEventListener('click',(ev)=>{ ev.stopPropagation(); if(confirm('Eliminar esta entrada?')){ data[key].splice(idx,1); if(data[key].length===0) delete data[key]; save(); renderCalendar(); } });
+        awrap.appendChild(editBtn); awrap.appendChild(delBtn); el.appendChild(awrap);
+
+        entriesDiv.appendChild(el);
+      });
+
+      // si hay más, mostrar contador
+      if(entries.length > 3){
+        const more = document.createElement('div'); more.className='entry';
+        more.textContent = `+ ${entries.length - 3} más... (editar para ver)`;
+        more.style.fontStyle='italic'; entriesDiv.appendChild(more);
+      }
+
+      cell.appendChild(header);
+      cell.appendChild(entriesDiv);
+
+      // doble clic para abrir modal añadir (sin seleccionar index)
+      cell.addEventListener('dblclick', ()=> openModal(key));
+
+      // touch long press
+      let pressTimer=null;
+      cell.addEventListener('touchstart', function(e){ if(e.target.tagName==='BUTTON') return; pressTimer=setTimeout(()=> openModal(key), 600); }, {passive:true});
+      cell.addEventListener('touchend', ()=> { if(pressTimer) clearTimeout(pressTimer); });
+
+      // marcar hoy
+      const t = new Date();
+      if(cellDate.toDateString() === t.toDateString()){
+        cell.style.boxShadow = 'inset 0 0 0 2px rgba(47,191,113,0.12)';
+      }
+
+      daysGrid.appendChild(cell);
+    }
+  }
+
+  // Modal: si index===undefined -> crear, si index provided -> editar esa entrada
+  function openModal(key, index){
+    modalRoot.innerHTML=''; modalRoot.style.display='block'; modalRoot.setAttribute('aria-hidden','false');
+
+    const backdrop = document.createElement('div'); backdrop.className='modal-backdrop'; backdrop.setAttribute('role','dialog'); backdrop.setAttribute('aria-modal','true');
+    const modal = document.createElement('div'); modal.className='modal'; modal.addEventListener('click',(e)=>e.stopPropagation());
+
+    const header = document.createElement('header');
+    const title = document.createElement('div'); 
+    const dateParts = key.split('-'); const displayDate = new Date(Number(dateParts[0]), Number(dateParts[1])-1, Number(dateParts[2]));
+    title.innerHTML = `<strong>${displayDate.toLocaleDateString(locale, {weekday:'long', day:'numeric', month:'long', year:'numeric'})}</strong>`;
+    const closeX = document.createElement('button'); closeX.type='button'; closeX.textContent='✕'; closeX.addEventListener('click', closeModal);
+    header.appendChild(title); header.appendChild(closeX);
+
+    // form fields
+    const inputTitle = document.createElement('input'); inputTitle.type='text'; inputTitle.placeholder='Título ej: Salida al chocollero';
+    const textarea = document.createElement('textarea'); textarea.placeholder='Describe la entrada (información)';
+
+    // Si editamos, cargar datos
+    if(typeof index === 'number' && data[key] && data[key][index]){
+      inputTitle.value = data[key][index].title || '';
+      textarea.value = data[key][index].text || '';
+    }
+
+    // listado de entradas actuales con opción a seleccionar para editar rápido (solo en modal)
+    const currentList = document.createElement('div'); currentList.style.marginTop='8px';
+    const currentEntries = data[key] || [];
+    if(currentEntries.length > 0){
+      const h = document.createElement('div'); h.style.fontWeight='700'; h.style.marginBottom='6px'; h.textContent = 'Entradas del día';
+      currentList.appendChild(h);
+      currentEntries.forEach((en,i)=>{
+        const row = document.createElement('div'); row.style.display='flex'; row.style.justifyContent='space-between'; row.style.alignItems='center'; row.style.gap='8px'; row.style.marginBottom='6px';
+        const txt = document.createElement('div'); txt.style.flex='1'; txt.innerHTML = `<div style="font-weight:700;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${en.title||'(Sin título)'}</div><div style="color:${getComputedStyle(document.documentElement).getPropertyValue('--muted')};font-size:12px">${(en.text||'').slice(0,80)}${(en.text && en.text.length>80)?'…':''}</div>`;
+        const btns = document.createElement('div'); btns.style.display='flex'; btns.style.gap='6px';
+        const ed = document.createElement('button'); ed.type='button'; ed.textContent='Editar'; ed.addEventListener('click', ()=> { inputTitle.value = en.title || ''; textarea.value = en.text || ''; index = i; });
+        const dlt = document.createElement('button'); dlt.type='button'; dlt.textContent='Eliminar'; dlt.addEventListener('click', ()=> { if(confirm('Eliminar esta entrada?')){ data[key].splice(i,1); if(data[key].length===0) delete data[key]; save(); closeModal(); renderCalendar(); } });
+        btns.appendChild(ed); btns.appendChild(dlt);
+        row.appendChild(txt); row.appendChild(btns);
+        currentList.appendChild(row);
+      });
+    }
+
+    // footer buttons
+    const footer = document.createElement('div'); footer.style.display='flex'; footer.style.justifyContent='flex-end'; footer.style.gap='8px'; footer.style.marginTop='10px';
+    const cancelBtn = document.createElement('button'); cancelBtn.type='button'; cancelBtn.textContent='Cancelar'; cancelBtn.addEventListener('click', closeModal);
+    const saveBtn = document.createElement('button'); saveBtn.type='button'; saveBtn.className='primary'; saveBtn.textContent = (typeof index === 'number') ? 'Guardar cambios' : 'Guardar';
+    saveBtn.addEventListener('click', ()=>{
+      const t = inputTitle.value.trim();
+      const txt = textarea.value.trim();
+      if(!t && !txt){ alert('Ingresa un título o texto (no ambos vacíos).'); return; }
+      const obj = { title: t, text: txt, created: Date.now() };
+      if(typeof index === 'number'){
+        // editar existente
+        if(!data[key]) data[key]=[];
+        data[key][index] = obj;
+      } else {
+        // crear nueva entrada al final
+        if(!data[key]) data[key]=[];
+        data[key].push(obj);
+      }
+      save(); closeModal(); renderCalendar();
+    });
+
+    modal.appendChild(header);
+    modal.appendChild(inputTitle);
+    modal.appendChild(textarea);
+    if(currentEntries.length) modal.appendChild(currentList);
+    footer.appendChild(cancelBtn); footer.appendChild(saveBtn);
+    modal.appendChild(footer);
+
+    backdrop.appendChild(modal); modalRoot.appendChild(backdrop);
+    backdrop.addEventListener('click', (e)=>{ if(e.target===backdrop) closeModal(); });
+
+    // focus
+    setTimeout(()=> inputTitle.focus(), 60);
+
+    function closeModal(){ modalRoot.style.display='none'; modalRoot.innerHTML=''; modalRoot.setAttribute('aria-hidden','true'); }
+  }
+
+  // inicial
+  renderCalendar();
+})();
+</script>
+  <footer class="container-fluid"><div class="text-center small">© 2025 AVIRIS</div></footer>
+
+</body>
+</html>

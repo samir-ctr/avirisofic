@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
- //🔹 Registrar el DbContext usando la cadena de conexión del appsettings.json
+// Registrar el DbContext usando la cadena de conexión del appsettings.json
 builder.Services.AddDbContext<TurismoAvesDb3Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );

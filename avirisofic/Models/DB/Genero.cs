@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace avirisofic.Models.DB;
+﻿namespace avirisofic.Models.DB;
 
 public partial class Genero
 {

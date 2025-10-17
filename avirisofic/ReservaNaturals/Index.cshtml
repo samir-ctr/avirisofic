@@ -1,0 +1,194 @@
+﻿@model IEnumerable<avirisofic.Models.DB.ReservaNatural>
+g
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<main class="col-lg-8 col-md-8 p-3">
+
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h2>Reservas Naturales de Nicaragua</h2> 
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+        <a class="btn btn-brand" href="mapa.html">Ver en mapa</a>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <div id="reservasGrid" class="row g-3">
+               
+
+                @foreach (var item in Model)
+                {
+
+                    <div class="col-md-4">
+                        <div class="card card-reserve">
+                            <img src="@Html.DisplayFor(modelItem => item.ImagenRef)" class="card-img-top">
+                            <div class="card-body">
+                                <h5>    @Html.DisplayFor(modelItem => item.Nombre)</h5>
+                                <div class="small text-muted">
+                                    @Html.DisplayFor(modelItem => item.IdMunicipioNavigation.Nombre)
+                                </div><div class="mt-1">$45.00 USD / persona</div>
+                                <a class="btn btn-warning mt-2" asp-action="Details" asp-route-id="@item.IdReserva">Details</a> |
+                                <a class="btn btn-brand mt-2" href="reservar.html?reserva=@item.IdReserva">Reservar</a>
+                            </div>
+                        </div>
+                        <a asp-action="Edit" asp-route-id="@item.IdReserva">Edit</a> |
+                        
+
+                    </div>
+
+
+                      
+                        @*     <td>
+                        
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Descripcion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ubicacion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CupoDiarioDefault)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Activa)
+                        </td>                               
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaCreacion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreadoPorNavigation.IdUsuario)
+                        </td>
+                        <td>
+                         
+                        </td> *@
+                     
+                          
+                    
+                       
+                  
+                }
+                            
+           
+                      
+    </div>
+    </div>
+
+        <div class="col-lg-4">
+            <div class="card p-3 mb-3"><h5>Estadísticas de Avistamiento</h5><ul id="topAves" class="list-group list-group-flush"><li class="list-group-item">1. Guardabarranco</li><li class="list-group-item">2. Tucán Pico Iris</li><li class="list-group-item">3. Quetzal Resplandeciente</li><li class="list-group-item">4. Colibrí Garganta de Rubí</li><li class="list-group-item">5. Águila Harpía</li></ul></div>
+            <div class="card p-3">
+                <h5>Mapa (offline)</h5><div id="map" style="height:300px">
+                    <svg viewBox="0 0 192 298" style="width: 100%; height: 100%;">
+                        <rect x="0" y="0" width="192" height="298" fill="#e6f7ee"></rect>
+                        <path d="M 0 59.6 C 38.400000000000006 14.9, 76.80000000000001 104.3, 115.19999999999999 74.5 S 172.8 119.2, 192 89.39999999999999" stroke="#cfe8dd" fill="none" stroke-width="8"></path>
+                        <g>
+                            <circle cx="111.99999999999994" cy="97.02325581395354" r="8" fill="#1db4ff" stroke="#0a7aa5" stroke-width="2"></circle><title>
+                                Reserva de Biosfera Bosawás
+                                Jinotega — $45.00 USD
+                            </title>
+                        </g>
+                        <g>
+                            <circle cx="70.24000000000005" cy="220.24279069767442" r="8" fill="#1db4ff" stroke="#0a7aa5" stroke-width="2"></circle><title>
+                                Reserva Natural Laguna de Apoyo
+                                Masaya — $35.00 USD
+                            </title>
+                        </g>
+                        <g>
+                            <circle cx="70.12000000000005" cy="130.49627906976744" r="8" fill="#1db4ff" stroke="#0a7aa5" stroke-width="2"></circle><title>
+                                Reserva Silvestre El Jaguar
+                                Jinotega — $40.00 USD
+                            </title>
+                        </g>
+                        <g>
+                            <circle cx="73.31999999999998" cy="226.68790697674416" r="8" fill="#1db4ff" stroke="#0a7aa5" stroke-width="2"></circle><title>
+                                Reserva Natural Volcán Mombacho
+                                Granada — $38.00 USD
+                            </title>
+                        </g>
+                        <g>
+                            <circle cx="115.99999999999974" cy="284.13953488372096" r="8" fill="#1db4ff" stroke="#0a7aa5" stroke-width="2"></circle><title>
+                                Refugio de Vida Silvestre Los Guatuzos
+                                Río San Juan — $42.00 USD
+                            </title>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ubicacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CupoDiarioDefault)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreadoPorNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdMunicipioNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ubicacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CupoDiarioDefault)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaCreacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreadoPorNavigation.IdUsuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdMunicipioNavigation.IdMunicipio)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdReserva">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdReserva">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdReserva">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
